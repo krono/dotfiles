@@ -3,15 +3,19 @@
 [ -f ~/.shrc ] && source ~/.shrc
 
 # mac hack
-[ type update_terminal_cwd 2>/dev/null >/dev/null ] || . /etc/bashrc
+if command -v update_terminal_cwd 2>/dev/null >/dev/null; then
+  :
+else
+  [ -e /etc/bashrc ] && . /etc/bashrc
+fi
 
-if [ type update_terminal_cwd 2>/dev/null >/dev/null ]; then 
+if command -v update_terminal_cwd 2>/dev/null >/dev/null; then 
   UTCWD=update_terminal_cwd
 else 
   UTCWD=:
 fi
 
-[ -f ~/.complete.sh ] && source ~/.complete.sh
+[ -e ~/.complete.sh ] && source ~/.complete.sh
 
 #source /Applications/Aquamacs.app/Contents/Resources/etc/emacs.bash
 

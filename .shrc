@@ -101,9 +101,9 @@ curlcopy() {
   printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
 }
 
-if type archey 2>&1 >/dev/null; then
+if command -v archey 2>&1 >/dev/null; then
   archey
-elif type screenfetch 2>&1 >/dev/null; then
+elif command -v screenfetch 2>&1 >/dev/null; then
   echo ""
   screenfetch
 fi

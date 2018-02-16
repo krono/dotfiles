@@ -132,6 +132,8 @@ __hg_ps1 ()
     fi
 }
 
-if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-  source $(brew --prefix)/share/bash-completion/bash_completion
+if [ type brew 2>/dev/null >/dev/null ]; then
+  if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+    source $(brew --prefix)/share/bash-completion/bash_completion
+  fi
 fi

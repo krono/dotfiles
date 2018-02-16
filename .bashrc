@@ -50,7 +50,7 @@ function __make_ps1 () {
   shopt -s promptvars
   echo -n '\[${COLOR_NONE}\]'
   echo -n '\[${COLOR_RED}\]'; echo -n '${__additional_prompt}'; echo -n '\[${COLOR_NONE}\]'
-  echo -n '\[${COLOR_GREEN}\]\u\[${COLOR_BLACK}\]@\[${COLOR_GREEN_BOLD}\]\h '
+  echo -n '\[${COLOR_GREEN}\]\u\[${COLOR_BLACK}\]@\[${COLOR_HOST}\]\h '
   echo -n '\[${COLOR_WHITE_BOLD}\]\w\[${COLOR_NONE}\]'
   echo
   echo -n '\[${COLOR_BLUE}\][\t]'

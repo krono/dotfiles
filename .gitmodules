@@ -1,0 +1,18 @@
+[submodule ".emacs.d/lisp/emacs-color-theme-solarized"]
+	path = .emacs.d/lisp/emacs-color-theme-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule ".emacs.d/lisp/Emacs-Liquid"]
+	path = .emacs.d/lisp/Emacs-Liquid
+	url = https://github.com/rehanift/Emacs-Liquid.git
+[submodule ".emacs.d/lisp/floobits"]
+	path = .emacs.d/lisp/floobits
+	url = https://github.com/Floobits/floobits-emacs.git
+[submodule ".emacs.d/lisp/markdown-mode"]
+	path = .emacs.d/lisp/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
+[submodule ".emacs.d/lisp/shampoo-emacs"]
+	path = .emacs.d/lisp/shampoo-emacs
+	url = git://github.com/dmatveev/shampoo-emacs.git
+[submodule ".emacs.d/lisp/textmate"]
+	path = .emacs.d/lisp/textmate
+	url = http://github.com/defunkt/textmate.el.git

@@ -1,0 +1,18 @@
+# from chneukirchen
+# Don't complete the same twice for kill/diff.
+zstyle ':completion:*:(kill|diff):*'       ignore-line yes
+# Don't complete backup files as commands.
+zstyle ':completion:*:complete:-command-::*' ignored-patterns '*\~'
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' matcher-list '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' max-errors 3
+zstyle ':completion:*' menu select=5
+zstyle :compinstall filename '/Users/tobias/.zcompletion'
+
+zstyle ':completion:*' completer _expand _complete _ignored _match _approximate
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

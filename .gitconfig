@@ -1,0 +1,66 @@
+[user]
+    name = Tobias Pape
+    email = tobias@netshed.de
+[include]
+    path = .gitconfig.local
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[pretty]
+    awesome = %Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
+[alias]
+    st = status -sb
+    co = checkout
+    up = "!git remote update -p; git merge --ff-only @{u}"
+    glog = log --graph --pretty=awesome --abbrev-commit --date=relative
+    news = !git glog $(git log --author="\"$(git config user.name)\"" --pretty=format:%H -n1)..
+    log-me = !UN=$(git config user.name)&& git log --author="\"$UN\"" --pretty=format:'%h %cd %s' --date=short
+    log-nice  = log --graph --decorate --pretty=oneline --abbrev-commit
+    panic     = !tar cvf ../git_panic.tar *
+    wdiff = diff --color-words
+    graph = log --graph --oneline --decorate
+    incoming = "!git remote update -p; git log ..@{u}"
+    outgoing = log @{u}..
+    ap = add --patch
+[merge]
+    tool = opendiff
+    summary = true
+[pull]
+    ff = only
+# [http]
+#   sslVerify = false
+
+# check that anything we're getting is complete and sane on a regular basis 
+[transfer] 
+    fsckObjects = true 
+[fetch] 
+    fsckObjects = true 
+    recurseSubmodules = true
+[receive] 
+    fsckObjects = true 
+
+[mergetool]
+    keepBackup = true
+[push]
+    default = simple
+    recurseSubmodules = check
+[merge "mcVersion"]
+    driver = /Users/tobias/dev/GitFileTree-MergeDriver/merge --version %O %A %B
+[merge "mcMethodProperties"]
+    name = GitFileTree MergeDriver for Monticello
+    driver = /Users/tobias/dev/GitFileTree-MergeDriver/merge --methodProperties %O %A %B
+[merge "mcProperties"]
+    name = GitFileTree MergeDriver for Monticello
+    driver = /Users/tobias/dev/GitFileTree-MergeDriver/merge --properties %O %A %B
+[filter "lfs"]
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[diff]
+    noprefix = true
+    compactionHeuristic = true

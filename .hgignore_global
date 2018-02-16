@@ -1,0 +1,38 @@
+syntax: glob
+*.class
+*~
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.pdfsync
+*.synctex.gz
+*.rel
+*.orig
+*.bcf
+*.loa
+*.lol
+*.lof
+*.lot
+*.tdo
+*-blx.bib
+*.run.xml
+auto/
+# Python
+*.pyc
+*,cover
+
+*.rel
+syntax: regexp
+.*\.DS_Store

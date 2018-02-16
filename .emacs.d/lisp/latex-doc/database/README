@@ -1,0 +1,21 @@
+This directory is the EDB database of the LaTeX document.
+
+EDB is simple database for Emacs, you can obtain it from:
+http://pag.lcs.mit.edu/~mernst/software/
+
+Files in this directory:
+- latex-doc.edb: the database in internal layout of EDB,
+- latex-doc.fmt: the format file for the database,
+- latex-doc.dba: the auxillary file for the database.
+
+To export the database so that it can be used in `latex-doc-data.el' file:
+- Load the database (provided you have installed and configured the EDB package
+  properly):
+	M-x db-find-file <RET>
+	Enter: <path>/latex-doc.edb <RET>
+- Disable the usage of internal file layout:
+	C-u 0 M-x db-toggle-internal-file-layout <RET>
+- Export to some file:
+	C-x C-w <RET>
+  Save the database something say "out.el"
+- Make necessary changes out.el => latex-doc-data.el

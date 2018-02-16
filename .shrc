@@ -1,0 +1,125 @@
+#!/bin/sh
+
+# If not running interactively, don't do anything
+case $- in
+  *i*) : ;;
+  *) return ;;
+esac
+
+
+SHELL_NAME=$(ps -o command= -p $$)
+SHELL_NAME=${SHELL_NAME##*/}
+SHELL_NAME=${SHELL_NAME%% *}
+export SHELL_NAME=${SHELL_NAME#-}
+
+
+if [ ! -z "$KSH_VERSION$BASH_VERSION$ZSH_VERSION" ]; then
+  . ${HOME}/.color.sh
+fi
+
+if [ -z "$ZSH_VERSION" ]; then
+  set -o emacs
+fi
+
+if [ -z "$SSH_CLIENT" ]; then
+    COLOR_HOST="${COLOR_GREEN}"
+    COLOR_NUMBER_HOST="${COLOR_NUMBER_GREEN}"
+else
+    COLOR_HOST="${COLOR_ORANGE}"
+    COLOR_NUMBER_HOST="${COLOR_NUMBER_ORANGE}"
+fi
+
+#alias emacs="/Applications/Aquamacs.app/Contents/MacOS/Aquamacs"
+#alias emacsclient="/Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient"
+alias skim="open -b net.sourceforge.skim-app.skim"
+alias ec=emacsclient
+alias file="file -p"
+alias now="date +%Y%m%d%H%M"
+#alias git=hub
+alias cdu="pushd ${UNI}"
+alias cdp="pushd ${UNI}/Paper"
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+
+
+#alias mc='TERM=xterm-color mc'
+#alias gsf='git svn fetch; date'
+alias danke="echo 'Bitteschön'"
+alias bitte="echo 'Na bitte.'"
+
+alias rot13="tr a-zA-Z n-za-mN-ZA-M"
+
+alias gt24="open ~/dev/gemstone/GemTools-1.0-beta.8-244x.app"
+alias gt31="open ~/dev/gemstone/GemTools-1.0-beta.8.7-3101x.app"
+
+
+alias traceviewer="PYTHONPATH=~/dev/pypy/pypy ~/dev/pypy/pypy/rpython/jit/tool/traceviewer.py"
+
+[ "x$TERM" != "xdump" ] && case "$OSTYPE" in
+  linux*)
+    [ -x /usr/bin/dircolors ] && eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    alias dir='ls --color=auto --format=vertical'
+    alias vdir='ls --color=auto --format=long'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    ;;
+  darwin*)
+    alias ls='ls -G'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    ;;
+esac
+
+
+# some more ls aliases
+alias ll='ls -lA'
+alias la='ls -A'
+alias l='ls -CF'
+alias vi='vim'
+
+maglev_env() {
+  export __additional_prompt="Maglev "
+  . ${HOME}/.maglev.sh
+  export GEMSTONE=$MAGLEV_HOME/gemstone
+  . "$MAGLEV_HOME/gemstone/bin/gemsetup.sh"
+}
+
+gemstone_env() {
+  export __additional_prompt="GemStone "
+  . /opt/gemstone/product/seaside/defSeaside
+}
+
+curlcopy() {
+  curl "$@" 2>/dev/null | pbcopy
+  printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
+}
+
+if type archey 2>&1 >/dev/null; then
+  archey
+elif type screenfetch 2>&1 >/dev/null; then
+  echo ""
+  screenfetch
+fi
+
+if [ ! -d ${HOME}/.hgext ]; then
+  mkdir ${HOME}/.hgext
+fi
+if [ ! -f ${HOME}/.hgext/extdir.py ]; then
+  cat > ${HOME}/.hgext/extdir.py <<END
+import os, sys
+extdir = os.path.dirname(__file__)
+for root, dirs, _ in os.walk(extdir):
+    sys.path.insert(0, root)
+    for extension in dirs:
+        sys.path.append(os.path.join(root, extension))
+END
+fi
+
+#EOF

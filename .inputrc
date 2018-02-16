@@ -1,0 +1,17 @@
+# ~/.inputrc (for readline)
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set completion-prefix-display-length 4
+set expand-tilde on
+
+"\e\C-i": dynamic-complete-history
+"\e/": menu-complete
+"\e?": "\e-1\e/"
+"\C-i": complete
+"\e[3~": delete-char
+$if Bash
+  Space: magic-space
+$endif

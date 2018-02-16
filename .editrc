@@ -1,0 +1,8 @@
+# ~/.editrc (for libedit)
+edit on
+bind -e
+bind ^R em-inc-search-prev
+bind ^S em-inc-search-next
+#bind ^I rl_complete
+bind ^L ed-clear-screen
+bind ^_ vi-undo

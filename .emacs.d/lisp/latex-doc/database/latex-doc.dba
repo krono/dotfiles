@@ -1,0 +1,53 @@
+;;; -*- Mode: Emacs-Lisp -*- 
+;;; latex-doc.dba
+
+(database-set-default-format-file database "latex-doc.fmt")
+
+;; Record type
+(define-enum-type 'latex-category
+  '("COMMAND" "ENVIRONMENT" "PACKAGE"))
+
+(database-set-fieldnames-to-list
+ database
+ '(
+   (name . one-line-string)
+   (category . latex-category)
+   (syntax . string)
+   (description . string-or-nil)
+   ))
+
+;;
+(database-set-print-name database
+			 "LaTeX Documentation")
+
+(dbf-set-summary-format "\\name")
+
+;;; Reading
+;;; Record
+(sepinfo-set-pre-first-string (database-record-sepinfo database)
+			      nil)
+(sepinfo-set-sep-string (database-record-sepinfo database)
+			"\n\n")
+(sepinfo-set-post-last-string (database-record-sepinfo database)
+			      "\n")
+
+;;; Field
+(sepinfo-set-sep-string (database-field-sepinfo database)
+			"\n")
+;;; Writing
+;; This will results an error "No field separator specified." when reading
+;; database
+(defun mydb-latex-doc-wrfr (record)
+  (cond ((equal (record-field record 'category database) "COMMAND")
+	 (insert "(latex-doc-defcmd\n"))
+	((equal (record-field record 'category database) "ENVIRONMENT")
+	 (insert "(latex-doc-defenv\n"))
+	((equal (record-field record 'category database) "PACKAGE")
+	 (insert "(latex-doc-defpkg\n"))
+	(t
+	 (error "wrong category"))
+	 )
+  (insert (format "%S" (record-field record 'name database)) "\n"
+	  (format "%S" (record-field record 'syntax database)) "\n"
+	  (format "%S" (record-field record 'description database)) "\nt)"))
+(database-set-write-region-from-record database 'mydb-latex-doc-wrfr)

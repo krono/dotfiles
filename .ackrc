@@ -1,0 +1,16 @@
+# Always color, even if piping to a another program
+--color
+
+# Use "less -r" as my pager
+--pager=less -FXRS
+
+--context=1
+
+--type-set
+self=.self
+
+--type-set
+cmake=.cmake
+
+--type-set
+bib=.bib

@@ -2,6 +2,9 @@
 ;  redefine that with this from Aquamacs
 ;
 
+(unless (boundp 'TeX-replace-regexp-in-string)
+  (defalias #'TeX-replace-regexp-in-string #'replace-regexp-in-string))
+
 (autoload 'TeX-ispell-skip-setcar "tex" "Add SKIP to car of `ispell-tex-skip-alists'. ..." t)
 
 (defun TeX-run-discard-or-function-AQ (name command file)

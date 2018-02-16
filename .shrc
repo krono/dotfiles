@@ -101,11 +101,13 @@ curlcopy() {
   printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
 }
 
-if command -v archey 2>&1 >/dev/null; then
-  archey
-elif command -v screenfetch 2>&1 >/dev/null; then
-  echo ""
-  screenfetch
+
+for gimmick in archey neofetch screenfetch; do
+  if command -v $gimmick 2>&1 >/dev/null; then
+    echo ""
+    $gimmick
+    break
+  fi
 fi
 
 if [ ! -d ${HOME}/.hgext ]; then

@@ -108,7 +108,7 @@ for gimmick in archey neofetch screenfetch; do
     $gimmick
     break
   fi
-fi
+done
 
 if [ ! -d ${HOME}/.hgext ]; then
   mkdir ${HOME}/.hgext

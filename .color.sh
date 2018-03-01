@@ -94,7 +94,7 @@ else
     export LESS_TERMCAP_md="$COLOR_BLUE_BOLD"
     export LESS_TERMCAP_me="$COLOR_NONE"
     export LESS_TERMCAP_so="$COLOR_YELLOW_BOLD$BGCOLOR_BLUE"
-    export LESS_TERMCAP_se="$COLOR_NONE"
+    export LESS_TERMCAP_se="$(tput rmso)$COLOR_NONE"
     export LESS_TERMCAP_us="$(tput smul)$COLOR_WHITE"
     export LESS_TERMCAP_ue="$(tput rmul)$COLOR_NONE"
     export LESS_TERMCAP_mr="$(tput rev)"

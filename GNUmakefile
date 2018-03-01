@@ -11,3 +11,6 @@ ifeq ($(OS),)
 endif
 
 include dotfiles.mk
+
+$(HOME)/.% : .%
+	ln -s "$(PWD)/$<" "$@"

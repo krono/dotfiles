@@ -11,3 +11,15 @@ CONFIGDESTIONATION=${CONFIGFILES:S/^/$(HOME)\//g}
 .endif
 
 include dotfiles.mk
+
+
+.for file in $(DOTFILES)
+$(HOME)/$(file): $(file)
+	ln -s "$(PWD)/$<" "$@"
+.endfor
+
+.for config in $(CONFIGFILES)
+$(HOME)/$(config): $(config)
+	ln -s "$(PWD)/$<" "$@"
+.endfor
+

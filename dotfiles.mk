@@ -19,11 +19,7 @@ $(HOME)/.config:
 $(HOME)/.config/% : %
 	ln -s "$(PWD)/$<" "$@"
 
-$(HOME)/.emacs: 
+$(HOME)/.emacs: .emacs.d/init.el
 	ln -s "$(PWD)/.emacs.d/init.el" "$(HOME)/.emacs"
-
-
-$(HOME)/.% : .%
-	ln -s "$(PWD)/$<" "$@"
 
 Darwin:

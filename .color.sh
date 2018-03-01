@@ -26,14 +26,14 @@ if [ -f "${CACHE_FILE}" ]; then
   . "${CACHE_FILE}"
 else
   
-  if (tput setaf 1 2>/dev/null >/dev/null) && [ "$NO_ARRAYS" != "1" ]; then
+  if (tput colors 2>/dev/null >/dev/null) && [ "$NO_ARRAYS" != "1" ]; then
     EXTENDED=1
     _colors=$(tput colors)
     COLORS=( $(for ((i=0; i<_colors; i++));\
-                       do printf "$(tput setaf $i) ";\
+                       do printf "$(tput setaf $i 0 0) ";\
                     done))
     BGCOLORS=( $(for ((i=0; i<_colors; i++));\
-                       do printf "$(tput setab $i) ";\
+                       do printf "$(tput setab $i 0 0) ";\
                     done))
     export COLORS
     export BGCOLORS

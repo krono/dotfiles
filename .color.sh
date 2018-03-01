@@ -99,10 +99,10 @@ else
     export LESS_TERMCAP_ue="$(tput rmul)$COLOR_NONE"
     export LESS_TERMCAP_mr="$(tput rev)"
     export LESS_TERMCAP_mh="$(tput dim)"
-    export LESS_TERMCAP_ZN="$(tput ssubm)"
-    export LESS_TERMCAP_ZV="$(tput rsubm)"
-    export LESS_TERMCAP_ZO="$(tput ssupm)"
-    export LESS_TERMCAP_ZW="$(tput rsupm)"
+    # export LESS_TERMCAP_ZN="$(tput ssubm)"
+    # export LESS_TERMCAP_ZV="$(tput rsubm)"
+    # export LESS_TERMCAP_ZO="$(tput ssupm)"
+    # export LESS_TERMCAP_ZW="$(tput rsupm)"
   else
     EXTENDED=0
     export COLOR_BLACK="\[\033[30m\]"
@@ -178,10 +178,10 @@ export LESS_TERMCAP_us="${LESS_TERMCAP_us}"
 export LESS_TERMCAP_ue="${LESS_TERMCAP_ue}"
 export LESS_TERMCAP_mr="${LESS_TERMCAP_mr}"
 export LESS_TERMCAP_mh="${LESS_TERMCAP_mh}"
-export LESS_TERMCAP_ZN="${LESS_TERMCAP_ZN}"
-export LESS_TERMCAP_ZV="${LESS_TERMCAP_ZV}"
-export LESS_TERMCAP_ZO="${LESS_TERMCAP_ZO}"
-export LESS_TERMCAP_ZW="${LESS_TERMCAP_ZW}"
+# export LESS_TERMCAP_ZN="${LESS_TERMCAP_ZN}"
+# export LESS_TERMCAP_ZV="${LESS_TERMCAP_ZV}"
+# export LESS_TERMCAP_ZO="${LESS_TERMCAP_ZO}"
+# export LESS_TERMCAP_ZW="${LESS_TERMCAP_ZW}"
 END
   else
     cat > "${CACHE_FILE}" <<END

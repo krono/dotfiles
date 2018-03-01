@@ -16,10 +16,12 @@ link-configfiles: $(CONFIGDESTIONATION)
 
 $(HOME)/.config:
 	mkdir -p "$@"
-$(HOME)/.config/% : %
-	ln -s "$(PWD)/$<" "$@"
 
 $(HOME)/.emacs: .emacs.d/init.el
 	ln -s "$(PWD)/.emacs.d/init.el" "$(HOME)/.emacs"
 
 Darwin:
+
+Linux:
+
+OpenBSD

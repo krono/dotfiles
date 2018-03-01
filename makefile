@@ -15,11 +15,11 @@ include dotfiles.mk
 
 .for file in $(DOTFILES)
 $(HOME)/$(file): $(file)
-	ln -s "$(PWD)/$<" "$@"
+	ln -s "$(PWD)/$(file)" "$@"
 .endfor
 
 .for config in $(CONFIGFILES)
 $(HOME)/$(config): $(config)
-	ln -s "$(PWD)/$<" "$@"
+	ln -s "$(PWD)/$(config)" "$@"
 .endfor
 

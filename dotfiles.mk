@@ -1,16 +1,5 @@
-#!/usr/bin/make -f
-
-SAVE:=. .. .git .gitmodules .config .DS_Store
-DOTFILES=$(filter-out $(SAVE), $(wildcard .*))
-DESTINATION=$(addprefix $(HOME)/,$(DOTFILES))
-
-CONFIGFILES=$(filter-out $(SAVE), $(wildcard .config/*))
-CONFIGDESTIONATION=$(addprefix $(HOME)/,$(CONFIGFILES))
-
-ifeq ($(OS),)
-    OS := $(shell uname -s)
-endif
-
+#!/usr/bin/make
+# sans -f for as to make sure make uses proper makefile
 .PHONY: default link-files link-dotfiles link-dot-emacs $(OS)
 
 default: link-files $(OS)

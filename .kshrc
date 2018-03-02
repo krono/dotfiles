@@ -41,7 +41,7 @@ __make_ps1() {
   # add
   print -n "$COLOR_RED$__additional_prompt$COLOR_NONE"
   # log/host
-  print -n "$COLOR_GREEN$(logname)$COLOR_BLACK@$COLOR_GREEN_BOLD$(hostname)"
+  print -n "$COLOR_GREEN$(logname)$COLOR_BLACK@$COLOR_GREEN_BOLD$(hostname -s)"
   print -n " "
   # pwd
   print -n "$COLOR_WHITE_BOLD"

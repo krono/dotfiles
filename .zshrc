@@ -105,7 +105,7 @@ function __make_prompt() {
 }
 
 
-export PS1="$(__make_prompt)"
+PS1="$(__make_prompt)"
 
 setopt HIST_FCNTL_LOCK
 #setopt -o sharehistory

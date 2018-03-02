@@ -17,11 +17,14 @@ settitle () {
         fi
 }
 
+
 update_terminal_cwd() {
-  SEARCH=' '
-  REPLACE='%20'
-  PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
-  settitle "$PWD" "$PWD_URL"
+  if [ "$OSTYPE" = "darwin" ]; then
+    SEARCH=' '
+    REPLACE='%20'
+    PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+    settitle "$PWD" "$PWD_URL"
+  fi
 }
 
 

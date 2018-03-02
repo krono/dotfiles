@@ -6,6 +6,6 @@ set -A COLORS $(for i in $(jot $_colors 0 $_colors);\
            done)
 set -A BGCOLORS $(for  $(jot $_colors 0 $_colors);\
              do printf "$(tput setab $i 0 0) ";\
-             done))
+             done)
 export COLORS
 export BGCOLORS

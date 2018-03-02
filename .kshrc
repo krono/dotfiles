@@ -4,10 +4,15 @@ if [ -z "$OSTYPE" ]; then
   export OSTYPE=`uname -s | tr A-Z a-z`
 fi
 
+
+if echo $KSH_VERSION | grep -qi 'PD KSH'; then
+  export PDKSH=1
+  SHID="π"
+else
+  SHID="κ"
+fi
+
 [ -f ~/.shrc ] && . ~/.shrc
-
-
-SHID="κ"
 
 settitle () {
         printf "\e]0;%s\a" "$1"

@@ -29,15 +29,6 @@ else
   if (tput colors 2>/dev/null >/dev/null) && [ "$NO_ARRAYS" != "1" ]; then
     EXTENDED=1
     _colors=$(tput colors)
-    COLORS=( $(for ((i=0; i<_colors; i++));\
-                       do printf "$(tput setaf $i 0 0) ";\
-                    done))
-    BGCOLORS=( $(for ((i=0; i<_colors; i++));\
-                       do printf "$(tput setab $i 0 0) ";\
-                    done))
-    export COLORS
-    export BGCOLORS
-    _bold="$(tput bold)"
     if [ $_colors -ge 256 ]; then
       export   COLOR_NUMBER_BLACK=0
       export   COLOR_NUMBER_MAGENTA=165
@@ -61,6 +52,13 @@ else
       export   COLOR_NUMBER_ORANGE=3
       export   COLOR_NUMBER_PURPLE=5
     fi
+
+    if [ -z "$PDKSH" ]; then
+      . ./.color-sh.sh $_colors
+    else
+      . ./.color-pdksh.sh $_colors
+    fi
+    _bold="$(tput bold)"
     export   COLOR_BLACK="${COLORS[$COLOR_NUMBER_BLACK]}"
     export BGCOLOR_BLACK="${BGCOLORS[$COLOR_NUMBER_BLACK]}"
     export   COLOR_MAGENTA="${COLORS[$COLOR_NUMBER_MAGENTA]}"

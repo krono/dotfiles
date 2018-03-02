@@ -56,7 +56,7 @@ else
     if [ -z "$PDKSH" ]; then
       . ${HOME}/.color-sh.sh $_colors
     else
-      . ${HIOME}/.color-pdksh.sh $_colors
+      . ${HOME}/.color-pdksh.sh $_colors
     fi
     _bold="$(tput bold)"
     export   COLOR_BLACK="${COLORS[$COLOR_NUMBER_BLACK]}"

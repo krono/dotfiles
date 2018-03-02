@@ -1,6 +1,6 @@
 #
 # for pdksh-shells
-_colors=$1
+_colors=$(( $1 - 1 ))
 set -A COLORS $(for i in $(jot $_colors 0 $_colors);\
            do printf "$(tput setaf $i 0 0) ";\
            done)

@@ -15,4 +15,4 @@ cmake=.cmake
 --type-set
 bib=.bib
 
--i
+--smart-case

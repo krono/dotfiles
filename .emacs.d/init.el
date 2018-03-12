@@ -46,9 +46,6 @@
 
 ;(autoload 'python "python" "Python mode." t)
 
-(when (functionp 'package-initialize)
-  (package-initialize))
-
 
 (unless (featurep 'aquamacs)
   (setq custom-file (concat
@@ -56,21 +53,8 @@
                      (convert-standard-filename "customizations.el")))
   (load custom-file))
 
-(when (functionp 'package-install)
-  (mapc (lambda (package)
-          (unless (package-installed-p package)
-            (package-install package)))
-        '(all-the-icons auctex auctex-lua column-marker csv-mode
-          diminish dired-details dired-efap ecb ediprolog
-          expand-region extempore-mode fill-column-indicator
-          gnupg gnuplot go-mode haskell-mode helm helm-flycheck
-          helm-flymake helm-git-grep helm-package highlight-symbol
-          latex-extra lua-mode magit neotree nlinum
-          org-plus-contrib pcmpl-args pcmpl-git prolog quack
-          rainbow-delimiters shell-switcher sml-mode
-          sphinx-frontend switch-window tuareg
-          unicode-whitespace)))
-
+(when (functionp 'package-initialize)
+  (package-initialize))
 
 (mapc 'load init-files)
 

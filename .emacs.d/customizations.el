@@ -78,6 +78,22 @@
 \\usepackage{longtable}
 \\usepackage{float}
 \\usepackage{hyperref}" ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}") ("\\subsubsection{%s}" . "\\subsubsection*{%s}") ("\\paragraph{%s}" . "\\paragraph*{%s}") ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))))
+ '(package-archive-priorities
+   (quote
+    (("gnu" . 150)
+     ("melpa-stable" . 100)
+     ("marmalade" . 50)
+     ("tromey" . 50)
+     ("org" . 100)
+     ("melpa" . 0))))
+ '(package-archives
+   (quote
+    (("melpa-stable" . "https://stable.melpa.org/packages/")
+     ("marmalade" . "http://marmalade-repo.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")
+     ("org" . "http://orgmode.org/elpa/")
+     ("tromey" . "http://tromey.com/elpa/")
+     ("gnu" . "https://elpa.gnu.org/packages/"))))
  '(reftex-default-bibliography (quote ("/Users/tobias/Documents/Uni/Bib/ITSE.bib")))
  '(reftex-enable-partial-scans t)
  '(reftex-extra-bindings t)

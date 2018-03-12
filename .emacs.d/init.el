@@ -47,7 +47,16 @@
 ;(autoload 'python "python" "Python mode." t)
 
 (when (functionp 'package-initialize)
-  (package-initialize)
+  (package-initialize))
+
+
+(unless (featurep 'aquamacs)
+  (setq custom-file (concat
+                     user-emacs-directory
+                     (convert-standard-filename "customizations.el")))
+  (load custom-file))
+
+(when (functionp 'package-install)
   (mapc (lambda (package)
           (unless (package-installed-p package)
             (package-install package)))
@@ -62,12 +71,6 @@
           sphinx-frontend switch-window tuareg
           unicode-whitespace)))
 
-
-(unless (featurep 'aquamacs)
-  (setq custom-file (concat
-                     user-emacs-directory
-                     (convert-standard-filename "customizations.el")))
-  (load custom-file))
 
 (mapc 'load init-files)
 

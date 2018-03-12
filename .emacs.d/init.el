@@ -37,7 +37,7 @@
                 (convert-standard-filename "init/"))))
   (add-to-list 'load-path init-directory)
   (dolist (file (directory-files init-directory nil ".*\\.el\\'") t)
-    (if (string-match (format "^init-\\(.+\\)\\.el\\'") file)
+    (when (string-match (format "^init-\\(.+\\)\\.el\\'") file)
       (eval-after-load (match-string-no-properties 1 file)
         `(load ,file))
       (add-to-list 'init-files file))))
@@ -46,8 +46,22 @@
 
 ;(autoload 'python "python" "Python mode." t)
 
-(if (functionp 'package-initialize)
-    (package-initialize))
+(when (functionp 'package-initialize)
+  (package-initialize)
+  (mapc (lambda (package)
+          (unless (package-installed-p package)
+            (package-install package)))
+        '(all-the-icons auctex auctex-lua column-marker csv-mode
+          diminish dired-details dired-efap ecb ediprolog
+          expand-region extempore-mode fill-column-indicator
+          gnupg gnuplot go-mode haskell-mode helm helm-flycheck
+          helm-flymake helm-git-grep helm-package highlight-symbol
+          latex-extra lua-mode magit neotree nlinum
+          org-plus-contrib pcmpl-args pcmpl-git prolog quack
+          rainbow-delimiters shell-switcher sml-mode
+          sphinx-frontend switch-window tuareg
+          unicode-whitespace)))
+
 
 (unless (featurep 'aquamacs)
   (setq custom-file (concat
@@ -190,7 +204,7 @@
 ;; done via customize
 ;; (add-hook 'text-mode-hook 'editing-visual-helpers)
 
-(if (featurep 'partial-completion-mode)
+(when (featurep 'partial-completion-mode)
     (partial-completion-mode))
 
 ;; Make all "yes or no" prompts show "y or n" instead

@@ -94,6 +94,9 @@
      ("org" . "http://orgmode.org/elpa/")
      ("tromey" . "http://tromey.com/elpa/")
      ("gnu" . "https://elpa.gnu.org/packages/"))))
+ '(package-selected-packages
+   (quote
+    (smartparens latex-extra magit csv-mode neotree all-the-icons go-mode extempore-mode unicode-whitespace highlight-symbol tuareg switch-window sphinx-frontend sml-mode smex shell-switcher rainbow-delimiters quack prolog pcmpl-git pcmpl-args org-plus-contrib nlinum lua-mode helm-package helm-git-grep helm-flymake helm-flycheck haskell-mode gnuplot fill-column-indicator expand-region eshell-manual ediprolog ecb dired-efap dired-details diminish column-marker auctex-lua)))
  '(reftex-default-bibliography (quote ("/Users/tobias/Documents/Uni/Bib/ITSE.bib")))
  '(reftex-enable-partial-scans t)
  '(reftex-extra-bindings t)

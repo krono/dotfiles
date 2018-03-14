@@ -37,9 +37,9 @@
                 (convert-standard-filename "init/"))))
   (add-to-list 'load-path init-directory)
   (dolist (file (directory-files init-directory nil ".*\\.el\\'") t)
-    (when (string-match (format "^init-\\(.+\\)\\.el\\'") file)
-      (eval-after-load (match-string-no-properties 1 file)
-        `(load ,file))
+    (if (string-match (format "^init-\\(.+\\)\\.el\\'") file)
+        (eval-after-load (match-string-no-properties 1 file)
+          `(load ,file))
       (add-to-list 'init-files file))))
 
 (require 'python)
@@ -53,10 +53,18 @@
                      (convert-standard-filename "customizations.el")))
   (load custom-file))
 
+
+(require 'package nil 'noerror)
+
 (when (functionp 'package-initialize)
   (package-initialize))
 
-(mapc 'load init-files)
+(when (and (functionp 'package-installed-p)
+           (not (seq-every-p #'package-installed-p package-selected-packages)))
+  (package-install-selected-packages))
+
+
+(mapc #'load init-files)
 
 (eval '(setq inhibit-startup-echo-area-message t))
 

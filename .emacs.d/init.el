@@ -63,6 +63,8 @@
            (not (seq-every-p #'package-installed-p package-selected-packages)))
   (package-install-selected-packages))
 
+; once again to collect customize of loaded packages)
+(unless (featurep 'aquamacs) (load custom-file))
 
 (mapc #'load init-files)
 

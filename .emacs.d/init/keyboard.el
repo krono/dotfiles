@@ -39,8 +39,9 @@ Deletes whitespace at join."
 (global-set-key (kbd "C-M-]") 'enlarge-window-horizontally)
 
 
-(when (and (featurep 'aquamacs) (boundp 'osx-key-mode-map))
-    (define-key osx-key-mode-map (kbd "A-C-M-d") 'neotree-toggle))
+(if (and (featurep 'aquamacs) (boundp 'osx-key-mode-map))
+    (define-key osx-key-mode-map (kbd "A-C-M-d") 'neotree-toggle)
+  (global-set-key (kbd "C-M-s-d") 'neotree-toggle))
 (global-set-key (kbd "<f9>") 'neotree-toggle)
 
 

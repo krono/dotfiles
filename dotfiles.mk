@@ -26,4 +26,6 @@ Linux:
 
 OpenBSD:
 
+FreeBSD:
+
 # eof

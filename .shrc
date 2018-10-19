@@ -33,7 +33,9 @@ fi
 #alias emacsclient="/Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient"
 alias skim="open -b net.sourceforge.skim-app.skim"
 alias ec=emacsclient
-alias file="file -p"
+if (file -p /dev/null 2>/dev/null >/dev/null); then
+  alias file="file -p"
+fi
 alias now="date +%Y%m%d%H%M"
 #alias git=hub
 alias cdu="pushd ${UNI}"

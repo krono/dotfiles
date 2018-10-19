@@ -37,10 +37,11 @@
                 (convert-standard-filename "init/"))))
   (add-to-list 'load-path init-directory)
   (dolist (file (directory-files init-directory nil ".*\\.el\\'") t)
-    (if (string-match (format "^init-\\(.+\\)\\.el\\'") file)
-        (eval-after-load (match-string-no-properties 1 file)
-          `(load ,file))
-      (add-to-list 'init-files file))))
+    (let ((file-sans-ext (file-name-sans-extension file)))
+      (if (string-match (format "^init-\\(.+\\)\\.el\\'") file)
+          (eval-after-load (match-string-no-properties 1 file)
+            `(load ,file-sans-ext))
+        (add-to-list 'init-files file-sans-ext)))))
 
 (require 'python)
 

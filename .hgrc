@@ -40,6 +40,7 @@ keyword =
 extdiff =
 hgwatchman =
 hgext.bookmarks =
+shelve =
 
 [git]
 intree=1

@@ -196,9 +196,14 @@
   (rainbow-delimiters-mode))
 
 
-(add-hook 'python-mode-hook 'editing-visual-helpers)
-(add-hook 'prog-mode-hook 'editing-visual-helpers)
-(add-hook 'smalltalk-mode-hook 'editing-visual-helpers)
+(mapc (lambda (mode)
+	(add-hook mode 'editing-visual-helpers))
+      (append
+       '(python-mode-hook prog-mode-hook smalltalk-mode-hook)
+       (mapcar #'intern generic-mode-list)))
+
+
+       
 ;; done via customize
 ;; (add-hook 'text-mode-hook 'editing-visual-helpers)
 

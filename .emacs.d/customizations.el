@@ -7,8 +7,8 @@
  '(LaTeX-mode-hook
    (quote
     (LaTeX-math-mode flyspell-babel-setup flyspell-mode-on auto-fill-mode smart-dnd-latex turn-on-bib-cite turn-on-reftex LaTeX-preview-setup
-		     (lambda nil
-		       (TeX-fold-mode t)))))
+                     (lambda nil
+                       (TeX-fold-mode t)))))
  '(TeX-clean-confirm nil)
  '(TeX-command "etex")
  '(TeX-mode-hook (quote (aquamacs-latex-viewer-support)))
@@ -75,10 +75,14 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-vc-enable-support t)
  '(focus-follows-mouse t)
+ '(generic-extras-enable-list
+   (quote
+    (alias-generic-mode apache-conf-generic-mode apache-log-generic-mode etc-fstab-generic-mode etc-modules-conf-generic-mode etc-passwd-generic-mode etc-services-generic-mode etc-sudoers-generic-mode fvwm-generic-mode hosts-generic-mode inetd-conf-generic-mode ini-generic-mode java-manifest-generic-mode java-properties-generic-mode javascript-generic-mode mailagent-rules-generic-mode mailrc-generic-mode named-boot-generic-mode named-database-generic-mode prototype-generic-mode resolve-conf-generic-mode samba-generic-mode show-tabs-generic-mode vrml-generic-mode x-resource-generic-mode xmodmap-generic-mode)))
  '(global-nlinum-mode t)
  '(hippie-expand-try-functions-list
    (quote
     (try-complete-abbrev try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-line try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol)))
+ '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries t)
  '(linum-delay t)
  '(org-export-latex-classes
@@ -160,14 +164,20 @@
      ("gnu" . "https://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (smartparens latex-extra magit csv-mode neotree all-the-icons go-mode extempore-mode unicode-whitespace highlight-symbol tuareg switch-window sphinx-frontend sml-mode smex shell-switcher rainbow-delimiters quack prolog pcmpl-git pcmpl-args org-plus-contrib nlinum lua-mode helm-package helm-git-grep helm-flymake helm-flycheck haskell-mode gnuplot fill-column-indicator expand-region eshell-manual ediprolog ecb dired-efap dired-details diminish column-marker auctex-lua)))
+    (geiser puppet-mode smartparens latex-extra magit csv-mode neotree all-the-icons go-mode extempore-mode unicode-whitespace highlight-symbol tuareg switch-window sphinx-frontend sml-mode smex shell-switcher rainbow-delimiters quack prolog pcmpl-git pcmpl-args org-plus-contrib nlinum lua-mode helm-package helm-git-grep helm-flymake helm-flycheck haskell-mode gnuplot fill-column-indicator expand-region eshell-manual ediprolog ecb dired-efap dired-details diminish column-marker auctex-lua)))
+ '(puppet-fontify-variables-in-comments t)
+ '(puppet-include-indent 4)
+ '(puppet-indent-level 4)
+ '(puppet-lint-command
+   "puppet-lint --with-context --log-format \"%{path}:%{line}: %{kind}: %{message} (%{check})\"")
  '(reftex-default-bibliography (quote ("/Users/tobias/Documents/Uni/Bib/ITSE.bib")))
  '(reftex-enable-partial-scans t)
  '(reftex-extra-bindings t)
  '(reftex-use-external-file-finders t)
  '(safe-local-variable-values
    (quote
-    ((TeX-engine . xetex)
+    ((yaml-indent-offset . 4)
+     (TeX-engine . xetex)
      (TeX-master . t)
      (TeX-style-local . "common")
      (TeX-style-local . common))))
@@ -188,6 +198,7 @@
      (unsplittable)
      (active-alpha . 0.9)
      (inactive-alpha . 0.6))))
+ '(tab-always-indent (quote complete))
  '(text-mode-hook
    (quote
     (turn-on-flyspell auto-detect-wrap smart-spacing-mode text-mode-hook-identify)))

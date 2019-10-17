@@ -33,6 +33,13 @@ fi
 #alias emacsclient="/Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient"
 alias skim="open -b net.sourceforge.skim-app.skim"
 alias ec=emacsclient
+
+kec() {
+    lastarg="${@:~0}"
+    set -- ${@:1:$(($# - 1))}
+    emacsclient "$@" $(kpsewhich $lastarg)
+}
+
 if (file -p /dev/null 2>/dev/null >/dev/null); then
   alias file="file -p"
 fi
@@ -40,6 +47,7 @@ alias now="date +%Y%m%d%H%M"
 #alias git=hub
 alias cdu="pushd ${UNI}"
 alias cdp="pushd ${UNI}/Paper"
+alias cdt="pushd ${UNI}/PhD/thesis"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
@@ -102,7 +110,10 @@ curlcopy() {
   curl "$@" 2>/dev/null | pbcopy
   printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
 }
+alias ccurl=curlcopy
 
+
+[ -f "${HOME}/.shrc.local" ] && . "${HOME}/.shrc.local"
 
 for gimmick in archey neofetch screenfetch; do
   if command -v $gimmick 2>&1 >/dev/null; then

@@ -1,0 +1,1 @@
+../lisp/lilypond/lilypond-init.el

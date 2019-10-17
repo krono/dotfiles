@@ -180,7 +180,7 @@
 (autoload 'refill-mode "refill" "Autorefill-mode")
 ;;;;;;;;;;;;;;;;;
 
-(require 'htmlize)
+;(require 'htmlize)
 
 (autoload 'pypytrace-mode "pypytrace-mode" "Pypytrace mode" t)
 (add-to-list 'auto-mode-alist '("\\.pypy\\(trace\\|log\\)\\'" . pypytrace-mode))

@@ -15,4 +15,10 @@ cmake=.cmake
 --type-set
 bib=.bib
 
+--type-set
+racket:ext:rkt,rktl,ss,scm
+
 --smart-case
+
+--type-add
+rr:ext:r

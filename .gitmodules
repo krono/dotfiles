@@ -7,9 +7,6 @@
 [submodule ".emacs.d/lisp/floobits"]
 	path = .emacs.d/lisp/floobits
 	url = https://github.com/Floobits/floobits-emacs.git
-[submodule ".emacs.d/lisp/markdown-mode"]
-	path = .emacs.d/lisp/markdown-mode
-	url = git://jblevins.org/git/markdown-mode.git
 [submodule ".emacs.d/lisp/shampoo-emacs"]
 	path = .emacs.d/lisp/shampoo-emacs
 	url = git://github.com/dmatveev/shampoo-emacs.git

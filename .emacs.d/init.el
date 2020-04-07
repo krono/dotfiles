@@ -155,8 +155,6 @@
  (concat user-emacs-directory
          (convert-standard-filename "lisp/comment-dwim.el")))
 
-(load-library "graphviz-dot-mode")
-
 (load-library "smalltalk-mode")
 (load-library "cmake-mode")
 

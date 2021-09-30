@@ -29,29 +29,29 @@ else
     COLOR_NUMBER_HOST="${COLOR_NUMBER_ORANGE}"
 fi
 
-#alias emacs="/Applications/Aquamacs.app/Contents/MacOS/Aquamacs"
-#alias emacsclient="/Applications/Aquamacs.app/Contents/MacOS/bin/emacsclient"
-alias skim="open -b net.sourceforge.skim-app.skim"
-alias ec=emacsclient
+if [ "$UID" -ne 0 ]; then
+    COLOR_NUMBER_USER="${COLOR_NUMBER_GREEN}"
+else
+    COLOR_NUMBER_USER="${COLOR_NUMBER_RED}"
+fi
 
-kec() {
-    lastarg="${@:~0}"
-    set -- ${@:1:$(($# - 1))}
-    emacsclient "$@" $(kpsewhich $lastarg)
-}
 
 if (file -p /dev/null 2>/dev/null >/dev/null); then
   alias file="file -p"
 fi
+
 alias now="date +%Y%m%d%H%M"
 #alias git=hub
-alias cdu="pushd ${UNI}"
-alias cdp="pushd ${UNI}/Paper"
-alias cdt="pushd ${UNI}/PhD/thesis"
+
+alias sshpw="ssh -o PubkeyAuthentication=no"
+
+alias ttl="time texfot lualatex -synctex=1"
+alias bbl="time biber --isbn-normalise"
+
+
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
-
 
 
 #alias mc='TERM=xterm-color mc'
@@ -60,12 +60,6 @@ alias danke="echo 'Bitteschön'"
 alias bitte="echo 'Na bitte.'"
 
 alias rot13="tr a-zA-Z n-za-mN-ZA-M"
-
-alias gt24="open ~/dev/gemstone/GemTools-1.0-beta.8-244x.app"
-alias gt31="open ~/dev/gemstone/GemTools-1.0-beta.8.7-3101x.app"
-
-
-alias traceviewer="PYTHONPATH=~/dev/pypy/pypy ~/dev/pypy/pypy/rpython/jit/tool/traceviewer.py"
 
 [ "x$TERM" != "xdump" ] && case "$OSTYPE" in
   linux*)
@@ -94,24 +88,10 @@ alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
 
-maglev_env() {
-  export __additional_prompt="Maglev "
-  . ${HOME}/.maglev.sh
-  export GEMSTONE=$MAGLEV_HOME/gemstone
-  . "$MAGLEV_HOME/gemstone/bin/gemsetup.sh"
-}
 
-gemstone_env() {
-  export __additional_prompt="GemStone "
-  . /opt/gemstone/product/seaside/defSeaside
+mping() {
+    ping $1 | awk -F\[=\ \] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -q -n synth 1 pl " f;print $0;system(c)}';
 }
-
-curlcopy() {
-  curl "$@" 2>/dev/null | pbcopy
-  printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
-}
-alias ccurl=curlcopy
-
 
 [ -f "${HOME}/.shrc.local" ] && . "${HOME}/.shrc.local"
 
@@ -123,18 +103,5 @@ for gimmick in archey neofetch screenfetch; do
   fi
 done
 
-if [ ! -d ${HOME}/.hgext ]; then
-  mkdir ${HOME}/.hgext
-fi
-if [ ! -f ${HOME}/.hgext/extdir.py ]; then
-  cat > ${HOME}/.hgext/extdir.py <<END
-import os, sys
-extdir = os.path.dirname(__file__)
-for root, dirs, _ in os.walk(extdir):
-    sys.path.insert(0, root)
-    for extension in dirs:
-        sys.path.append(os.path.join(root, extension))
-END
-fi
 
 #EOF

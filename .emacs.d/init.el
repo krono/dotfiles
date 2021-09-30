@@ -129,7 +129,7 @@
 (defun try-complete-abbrev (old)
   (if (expand-abbrev) t nil))
 
-(require 'tramp)
+;(require 'tramp)
 ; emacsserver
 (server-start)
 
@@ -200,7 +200,10 @@
        '(python-mode-hook prog-mode-hook smalltalk-mode-hook)
        (mapcar #'intern generic-mode-list)))
 
-
+; well
+(defun set-recording-screen-size ()
+  (interactive)
+  (set-frame-size (selected-frame) 692 1038 t))
        
 ;; done via customize
 ;; (add-hook 'text-mode-hook 'editing-visual-helpers)
@@ -212,3 +215,4 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;eof
+(put 'downcase-region 'disabled nil)

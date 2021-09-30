@@ -56,6 +56,11 @@ cmd.diffmerge = /usr/bin/diffmerge
 
 cmd.sourcetreediff=opendiff
 opts.sourcetreediff=
+
+[schemes]
+hp = https://foss.heptapod.net/
+hp+ssh = ssh://hg@foss.heptapod.net/
+
 [merge-tools]
 diffmerge.executable = /usr/bin/diffmerge
 diffmerge.args = -merge -result=$output -t1="Local Version" -t2=$output -t3="Other Version" -caption=$output $local $base $other

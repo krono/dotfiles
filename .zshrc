@@ -95,7 +95,8 @@ SHID="ζ"
 
 function __make_prompt() {
   echo -n '%F{${COLOR_NUMBER_RED}}${__additional_prompt}%b%k%f';
-  echo -n '%F{${COLOR_NUMBER_GREEN}}%n%f%F{${COLOR_NUMBER_BLACK}}@%F{${COLOR_NUMBER_HOST}}%B%m%b%k%f ' # host
+  echo -n '%F{${COLOR_NUMBER_USER:=${COLOR_NUMBER_GREEN}}}%n%f'; # user
+  echo -n '%F{${COLOR_NUMBER_BLACK}}@%F{${COLOR_NUMBER_HOST:=${COLOR_NUMBER_GREEN}}}%B%m%b%k%f ' # host
   echo -n '%F{${COLOR_NUMBER_WHITE}}%B%6(~=%-2~…/%2~=%~)%b%f'
   echo -n '\n%{\r%}'
   echo -n '%F{${COLOR_NUMBER_BLUE}}[%*]%b%k%f ' # time
@@ -148,6 +149,8 @@ autoload -U url-quote-magic
 zstyle ':urlglobber' url-other-schema ftp git gopher http https magnet
 zstyle ':url-quote-magic:*' url-metas '*?[]^(|)~#='  # dropped { }
 zle -N self-insert url-quote-magic
+
+[[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # Entirety of my startup file... then
 if [[ "$PROFILE_STARTUP" == true ]]; then

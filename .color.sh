@@ -25,7 +25,9 @@ CACHE_FILE="${HOME}/.color.sh.${SHELL_NAME}-${TERM}"
 if [ -f "${CACHE_FILE}" ]; then
   . "${CACHE_FILE}"
 else
-  
+  export COLOR_DEFAULT="[39;49m"
+  export COLOR_NONE="[m"
+
   if (tput colors 2>/dev/null >/dev/null) && [ "$NO_ARRAYS" != "1" ]; then
     EXTENDED=1
     _colors=$(tput colors)
@@ -122,8 +124,6 @@ else
     export COLOR_CYAN_BOLD="\[\033[36;1m\]"
     export COLOR_WHITE_BOLD="\[\033[37;1m\]"
   fi
-  export COLOR_DEFAULT="[39;49m"
-  export COLOR_NONE="[m"
 
 
   if [ "${EXTENDED}" = "1" ]; then

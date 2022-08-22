@@ -9,7 +9,7 @@
 	url = https://github.com/Floobits/floobits-emacs.git
 [submodule ".emacs.d/lisp/shampoo-emacs"]
 	path = .emacs.d/lisp/shampoo-emacs
-	url = git://github.com/dmatveev/shampoo-emacs.git
+	url = https://github.com/dmatveev/shampoo-emacs.git
 [submodule ".vim/bundle/vim-fugitive"]
 	path = .vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git

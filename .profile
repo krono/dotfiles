@@ -16,3 +16,4 @@ if [ -n "$KSH_VERSION" ]; then
 elif [ -z "$BASH_VERSION$ZSH_VERSION" ]; then
   ENV=$HOME/.shrc; export ENV
 fi
+[ -f "$HOME/.profile.local" ] && . $HOME/.profile.local

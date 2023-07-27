@@ -132,8 +132,6 @@ bindkey '^X^e' edit-command-line;
 
 [[ $TERM = "dumb" ]] && unsetopt zle && PS1='$ '
 
-[[ -e ~/.iterm2_shell_integration.zsh ]] && source ~/.iterm2_shell_integration.zsh 
-
 [[ -e ~/.zcompletion ]] && source ~/.zcompletion
 
 # turn off ZLE bracketed paste in dumb term
@@ -151,6 +149,13 @@ zstyle ':url-quote-magic:*' url-metas '*?[]^(|)~#='  # dropped { }
 zle -N self-insert url-quote-magic
 
 [[ -e ~/.zshrc.local ]] && source ~/.zshrc.local
+
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+  # take back ^T
+  bindkey -M emacs "^T" transpose-chars
+  bindkey -M emacs "^[^I" fzf-file-widget
+fi
 
 # Entirety of my startup file... then
 if [[ "$PROFILE_STARTUP" == true ]]; then

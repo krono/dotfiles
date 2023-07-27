@@ -24,6 +24,11 @@
     incoming = "!git remote update -p; git log ..@{u}"
     outgoing = log @{u}..
     ap = add --patch
+    undo = reset HEAD~1
+    closebranch = "!w() { echo Attempting to close local and remote branch: $1 Processing...; current=$(git rev-parse --abbrev-ref HEAD); echo Checking the branch $1 out..;  git checkout $1;  echo Trying to create a new tag archive/$1;  git tag archive/\"$1\";  git push origin archive/\"$1\";  echo Deleting the local branch $1;  git checkout $current; git branch -D $1;  echo Deleting the remote branch $1;  git push origin --delete $1;  echo Done. To restore the closed branch later, enter: git checkout -b MyNewBranch archive/\"$1\"; }; w"
+
+[log]
+    decorate = auto
 [merge]
     tool = opendiff
     summary = true
@@ -55,13 +60,14 @@
     name = GitFileTree MergeDriver for Monticello
     driver = /Users/tobias/dev/GitFileTree-MergeDriver/merge --properties %O %A %B
 [filter "lfs"]
-    clean = git-lfs clean %f
-    smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
     required = true
+	process = git-lfs filter-process
 [rerere]
     enabled = true
     autoupdate = true
 [diff]
     noprefix = true
     compactionHeuristic = true
-
+    algorithm = histogram

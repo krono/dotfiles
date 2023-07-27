@@ -48,6 +48,13 @@ alias sshpw="ssh -o PubkeyAuthentication=no"
 alias ttl="time texfot lualatex -synctex=1"
 alias bbl="time biber --isbn-normalise"
 
+alias pbclear='pbcopy < /dev/null'
+
+curlcopy() {
+  curl "$@" 2>/dev/null | pbcopy
+  printf "${COLOR_GREEN}Ok.${COLOR_NORMAL}\n"
+}
+alias ccurl=curlcopy
 
 
 # make less more friendly for non-text input files, see lesspipe(1)
@@ -92,6 +99,25 @@ alias vi='vim'
 mping() {
     ping $1 | awk -F\[=\ \] '/me=/{t=$(NF-1);f=3000-14*log(t^20);c="play -q -n synth 1 pl " f;print $0;system(c)}';
 }
+
+randword() {
+    grep '^[a-z]\{2,5\}$' /usr/share/dict/words 2>/dev/null | shuf -n 1
+}
+
+gotmp() {
+    w=$(randword)
+    workdir=$(mktemp -d -t ${w})
+    cd "${workdir}"
+}
+
+alias ec=emacsclient
+
+kec() {
+    lastarg="${@:~0}"
+    set -- ${@:1:$(($# - 1))}
+    emacsclient "$@" $(kpsewhich $lastarg)
+}
+
 
 [ -f "${HOME}/.shrc.local" ] && . "${HOME}/.shrc.local"
 

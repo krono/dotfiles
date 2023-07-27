@@ -1,12 +1,12 @@
 #!/bin/bash
 
-[ -f ~/.shrc ] && source ~/.shrc
+[[ -f ~/.shrc ]] && source ~/.shrc
 
 # mac hack
 if command -v update_terminal_cwd 2>/dev/null >/dev/null; then
   :
 else
-  [ -e /etc/bashrc ] && . /etc/bashrc
+  [[ -e /etc/bashrc ]] && . /etc/bashrc
 fi
 
 if command -v update_terminal_cwd 2>/dev/null >/dev/null; then 
@@ -15,7 +15,7 @@ else
   UTCWD=:
 fi
 
-[ -e ~/.complete.sh ] && source ~/.complete.sh
+[[ -e ~/.complete.sh ]] && source ~/.complete.sh
 
 #source /Applications/Aquamacs.app/Contents/Resources/etc/emacs.bash
 
@@ -25,13 +25,13 @@ export __additional_prompt=""
 
 function __branch () {
   B="$(__git_ps1 "${GIT_PS1_FORMAT}")"
-  if [ -z "$B" ]; then
+  if [[ -z "$B" ]]; then
     B=$(hg prompt "$HG_PROMPT_FORMAT" 2>/dev/null)
     # if [ -z "${B}" ]; then
     #   B=""
     # fi
   fi
-  if [ ! -x "${B}" ]; then
+  if [[ ! -x "${B}" ]]; then
    B="${B} "
   fi
   printf "%b" "${B}"
@@ -67,7 +67,7 @@ export PS1=$(__make_ps1)
 
 function __prompt_command() {
   # Show last commands exit-code by color
-  if [ $? = 0 ]; then
+  if [[ $? = 0 ]]; then
     _EXITCODE="${COLOR_GREEN_BOLD}\$"
   else
     _EXITCODE="${COLOR_RED_BOLD}\$"
@@ -82,11 +82,16 @@ PROMPT_COMMAND=__prompt_command
 
 shopt -s histappend
 
-[ $TERM = "dumb" ] && PS1='$ ' && PROMPT_COMMAND=
+[[ $TERM = "dumb" ]] && PS1='$ ' && PROMPT_COMMAND=
 
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
 
-[ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
+if [[ -f ~/.fzf.bash ]]; then
+  source ~/.fzf.bash
+  # take back ^T
+  bind -m emacs-standard '"\C-t": transpose-chars'
+  # bind -m emacs-standard -x '"\C-t": fzf-file-widget'
+fi
 
 # No xon/xoff
 stty -ixon

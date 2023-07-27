@@ -38,7 +38,6 @@ acl =
 eol =
 keyword = 
 extdiff =
-hgwatchman =
 hgext.bookmarks =
 shelve =
 

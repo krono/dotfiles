@@ -1,5 +1,5 @@
 (require 'helm)
-(require 'helm-config)
+;(require 'helm-config)
 (require 'helm-eshell)
 (require 'helm-files)
 (require 'helm-grep)

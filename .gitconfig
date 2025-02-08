@@ -71,3 +71,11 @@
     noprefix = true
     compactionHeuristic = true
     algorithm = histogram
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+#[tag]
+#	gpgsign = true

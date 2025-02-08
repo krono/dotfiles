@@ -29,7 +29,7 @@ else
     COLOR_NUMBER_HOST="${COLOR_NUMBER_ORANGE}"
 fi
 
-if [ "$UID" -ne 0 ]; then
+if [ "${UID:-100}" -ne 0 ]; then
     COLOR_NUMBER_USER="${COLOR_NUMBER_GREEN}"
 else
     COLOR_NUMBER_USER="${COLOR_NUMBER_RED}"
@@ -44,6 +44,7 @@ alias now="date +%Y%m%d%H%M"
 #alias git=hub
 
 alias sshpw="ssh -o PubkeyAuthentication=no"
+alias sshsw="ssh -oHostKeyAlgorithms=+rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp521,ssh-dss,ssh-rsa -oMACs=+hmac-sha2-256 -oPubkeyAcceptedKeyTypes=+ssh-rsa"
 
 alias ttl="time texfot lualatex -synctex=1"
 alias bbl="time biber --isbn-normalise"
@@ -85,6 +86,7 @@ alias rot13="tr a-zA-Z n-za-mN-ZA-M"
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    
     ;;
 esac
 
@@ -101,7 +103,7 @@ mping() {
 }
 
 randword() {
-    grep '^[a-z]\{2,5\}$' /usr/share/dict/words 2>/dev/null | shuf -n 1
+    grep '^[a-z]\{2,5\}$' /usr/share/dict/words 2>/dev/null | sort -R | tail -n 1
 }
 
 gotmp() {
@@ -109,6 +111,11 @@ gotmp() {
     workdir=$(mktemp -d -t ${w})
     cd "${workdir}"
 }
+
+randid() {
+    echo $(randword)$(dd status=none if=/dev/random bs=1 count=2 | xxd -p)$(randword)
+}
+
 
 alias ec=emacsclient
 

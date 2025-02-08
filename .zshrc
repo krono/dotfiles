@@ -132,6 +132,9 @@ bindkey '^X^e' edit-command-line;
 
 [[ $TERM = "dumb" ]] && unsetopt zle && PS1='$ '
 
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
 [[ -e ~/.zcompletion ]] && source ~/.zcompletion
 
 # turn off ZLE bracketed paste in dumb term
